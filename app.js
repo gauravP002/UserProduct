@@ -27,5 +27,18 @@ const products = [
     details.textContent = `Product: ${product.name}, Price: $${product.price}, Category: ${product.category}`;
   }
 
+  function filterProducts() {
+    const search = serchInput.value.toLowerCase();
+    const category1 = category.value;
+  
+    const filtered = products.filter(product => {
+      const matchesCategory = category1 === 'all' || product.category === category1;
+      return (product.name.toLocaleLowerCase().indexOf(search)!= -1) && matchesCategory;
+    });
+    displayProduct(filtered);
+  }
 
-  displayProduct(products)
+
+  displayProduct(products);
+  serchInput.addEventListener('input', filterProducts);
+  category.addEventListener('change', filterProducts);
